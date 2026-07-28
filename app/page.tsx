@@ -3,8 +3,8 @@
 import { useState } from "react";
 
 // ─── EDIT THESE ANYTIME (Arun) ────────────────────────────────
-const UPI_ID = "yourname@upi";        // ← put your real UPI ID here
-const WHATSAPP = "919876543210";      // ← your WhatsApp number (with 91, no +)
+const UPI_ID = "arunsang369-7@okhdfcbank";        // ← put your real UPI ID here
+const WHATSAPP = "918428337833";      // ← your WhatsApp number (with 91, no +)
 
 const FORMATS = {
   perkill: {
