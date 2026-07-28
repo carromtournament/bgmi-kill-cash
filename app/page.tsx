@@ -4,8 +4,7 @@ import { useState } from "react";
 
 // ─── EDIT THESE ANYTIME (Arun) ────────────────────────────────
 const WHATSAPP = "918428337833";   // your WhatsApp number (91 + number, no +)
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbwBySRAPjNy4Ur4HCe1mZfpYDuLnXIuxGzA5vtLp2Sg6cGG_ijI3S6uguWiutj4Y_eW/exec
-";              // paste your Google Apps Script Web App URL here
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwBySRAPjNy4Ur4HCe1mZfpYDuLnXIuxGzA5vtLp2Sg6cGG_ijI3S6uguWiutj4Y_eW/exec";              // paste your Google Apps Script Web App URL here
 // UPI QR image lives at /public/upi-qr.png — replace that file with your real QR.
 // ──────────────────────────────────────────────────────────────
 
