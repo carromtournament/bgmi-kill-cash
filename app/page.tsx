@@ -109,9 +109,9 @@ export default function Home() {
             <span className="wa-icon">✆</span> REFER A FRIEND — SHARE ON WHATSAPP
           </button>
           <div className="hero-badges mono">
-            <span className="badge">₹5,000 TOP PRIZE</span>
-            <span className="badge">INSTANT UPI PAYOUT</span>
-            <span className="badge">SOLO ONLY</span>
+            <span className="badge badge-1">₹5,000 TOP PRIZE</span>
+            <span className="badge badge-2">INSTANT UPI PAYOUT</span>
+            <span className="badge badge-3">SOLO ONLY</span>
           </div>
         </div>
       </section>
@@ -449,13 +449,21 @@ const styles = `
 .modal-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
 .modal-ig:hover { box-shadow: 0 8px 24px rgba(220,39,67,0.4); }
 .ig-icon, .wa-icon { font-size: 17px; }
-.hero-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 34px; }
-.badge { font-size: 11px; letter-spacing: 1px; color: var(--muted); border: 1px solid var(--line); background: var(--panel); padding: 7px 13px; border-radius: 20px; }
+.hero-badges { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 40px; }
+.badge {
+  font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 11px 20px; border-radius: 8px;
+  color: #1a1400; position: relative; transition: transform .15s;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.35), 0 6px 16px rgba(0,0,0,0.4);
+}
+.badge:hover { transform: translateY(-2px); }
+.badge-1 { background: linear-gradient(145deg, #ffd85e, #f2a900); box-shadow: 0 4px 0 #a06f00, 0 8px 18px rgba(242,169,0,0.4); }
+.badge-2 { background: linear-gradient(145deg, #4ade80, #16a34a); color: #052e13; box-shadow: 0 4px 0 #0a5c26, 0 8px 18px rgba(74,222,128,0.35); }
+.badge-3 { background: linear-gradient(145deg, #ff8a5c, #c1440e); color: #fff; box-shadow: 0 4px 0 #7a2907, 0 8px 18px rgba(193,68,14,0.4); }
 
 .block { padding: 66px 20px; }
 .block-alt { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .block-inner { max-width: 780px; margin: 0 auto; }
-.section-tag { color: var(--amber); font-size: 13px; letter-spacing: 2px; margin-bottom: 26px; }
+.section-tag { color: var(--amber); font-size: 13px; letter-spacing: 2px; margin-bottom: 26px; text-align: center; }
 
 .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .step { border: 1px solid var(--line); background: var(--panel); padding: 22px; border-radius: 4px; transition: transform .12s, border-color .12s; }
@@ -478,7 +486,7 @@ const styles = `
 .fmt-prize { display: flex; justify-content: space-between; font-size: 14px; }
 .fp-label { color: var(--muted); }
 .fp-val { color: var(--text); font-weight: 600; }
-.fmt-pick { font-size: 11px; letter-spacing: 1.5px; color: var(--amber); border-top: 1px solid var(--line); padding-top: 12px; }
+.fmt-pick { font-size: 11px; letter-spacing: 1.5px; color: var(--amber); border-top: 1px solid var(--line); padding-top: 12px; text-align: center; }
 
 .reg { margin-top: 28px; border: 1px solid var(--amber); background: var(--panel); border-radius: 5px; padding: 26px; }
 .reg-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
