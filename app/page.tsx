@@ -162,7 +162,9 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                  <div className="fmt-pick mono">{active ? "✓ SELECTED" : "TAP TO SELECT"}</div>
+                  <div className={`fmt-pick mono ${active ? "fmt-picked" : ""}`}>
+                    {active ? "✓ SELECTED" : "SELECT"}
+                  </div>
                 </button>
               );
             })}
@@ -184,6 +186,22 @@ export default function Home() {
             <li><strong>Record your gameplay</strong> if possible — needed for any dispute.</li>
             <li><strong>Prizes paid via UPI</strong> within 24 hours of match completion.</li>
           </ol>
+        </div>
+      </section>
+
+      {/* JOIN / FOLLOW */}
+      <section className="join-section">
+        <div className="join-inner">
+          <div className="join-title">Stay in the loop</div>
+          <div className="join-sub mono">Get room IDs, results &amp; daily updates.</div>
+          <div className="join-btns">
+            <a href={CHANNEL_LINK} target="_blank" rel="noopener noreferrer" className="join-btn join-wa">
+              <span className="wa-icon">✆</span> WhatsApp Channel
+            </a>
+            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="join-btn join-ig">
+              <span className="ig-icon">◎</span> Instagram
+            </a>
+          </div>
         </div>
       </section>
 
@@ -486,7 +504,15 @@ const styles = `
 .fmt-prize { display: flex; justify-content: space-between; font-size: 14px; }
 .fp-label { color: var(--muted); }
 .fp-val { color: var(--text); font-weight: 600; }
-.fmt-pick { font-size: 11px; letter-spacing: 1.5px; color: var(--amber); border-top: 1px solid var(--line); padding-top: 12px; text-align: center; }
+.fmt-pick {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: #1a1400;
+  margin-top: 16px; padding: 11px; border-radius: 4px; text-align: center;
+  background: linear-gradient(145deg, #ffd85e, #f2a900);
+  box-shadow: 0 3px 0 #a06f00, 0 5px 12px rgba(242,169,0,0.3);
+  transition: transform .12s;
+}
+.fmt-card:hover .fmt-pick { transform: translateY(-1px); }
+.fmt-picked { background: linear-gradient(145deg, #4ade80, #16a34a); color: #052e13; box-shadow: 0 3px 0 #0a5c26, 0 5px 12px rgba(74,222,128,0.3); }
 
 .reg { margin-top: 28px; border: 1px solid var(--amber); background: var(--panel); border-radius: 5px; padding: 26px; }
 .reg-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
@@ -524,6 +550,22 @@ const styles = `
 .rules li { counter-increment: r; position: relative; padding: 16px 16px 16px 54px; border: 1px solid var(--line); background: var(--panel); border-radius: 3px; font-size: 15px; line-height: 1.5; }
 .rules li::before { content: counter(r, decimal-leading-zero); position: absolute; left: 16px; top: 15px; font-family: var(--font-geist-mono); color: var(--amber); font-size: 13px; font-weight: 700; }
 .rules strong { color: var(--amber-2); }
+
+.join-section { padding: 60px 20px; background: var(--bg-2); border-top: 1px solid var(--line); text-align: center; }
+.join-inner { max-width: 560px; margin: 0 auto; }
+.join-title { font-size: 26px; font-weight: 800; color: var(--amber-2); margin-bottom: 6px; }
+.join-sub { font-size: 13px; color: var(--muted); letter-spacing: 0.5px; margin-bottom: 28px; }
+.join-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.join-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 15px 30px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 15px;
+  letter-spacing: 0.5px; min-width: 210px; transition: transform .12s, box-shadow .15s;
+}
+.join-btn:hover { transform: translateY(-2px); }
+.join-wa { background: #1faa54; color: #fff; box-shadow: 0 4px 0 #0f6b34, 0 8px 20px rgba(31,170,84,0.3); }
+.join-wa:hover { box-shadow: 0 4px 0 #0f6b34, 0 12px 26px rgba(31,170,84,0.45); }
+.join-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; box-shadow: 0 4px 0 #7a1450, 0 8px 20px rgba(220,39,67,0.3); }
+.join-ig:hover { box-shadow: 0 4px 0 #7a1450, 0 12px 26px rgba(220,39,67,0.45); }
 
 .foot { text-align: center; padding: 32px 20px; color: var(--muted); font-size: 11px; letter-spacing: 1px; border-top: 1px solid var(--line); }
 
