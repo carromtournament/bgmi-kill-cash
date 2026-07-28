@@ -6,6 +6,8 @@ import { useState } from "react";
 const WHATSAPP = "918428337833";   // your WhatsApp number (91 + number, no +)
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbwBySRAPjNy4Ur4HCe1mZfpYDuLnXIuxGzA5vtLp2Sg6cGG_ijI3S6uguWiutj4Y_eW/exec";  // Google Apps Script Web App URL
 const GROUP_LINK = "https://chat.whatsapp.com/YOUR_GROUP_INVITE_CODE";  // paste your WhatsApp group invite link
+const CHANNEL_LINK = "https://whatsapp.com/channel/YOUR_CHANNEL_CODE";  // paste your WhatsApp CHANNEL link
+const INSTAGRAM_LINK = "https://instagram.com/YOUR_PAGE";               // paste your Instagram page link
 const SITE_URL = "https://bgmi-kill-cash.vercel.app";                   // your live site link (for referrals)
 // UPI QR image lives at /public/upi-qr.png — replace that file with your real QR.
 // ──────────────────────────────────────────────────────────────
@@ -41,6 +43,7 @@ type FormatKey = keyof typeof FORMATS;
 
 export default function Home() {
   const [selected, setSelected] = useState<FormatKey | null>(null);
+  const [showJoin, setShowJoin] = useState(false);
 
   const shareOnWhatsApp = () => {
     const text =
@@ -52,8 +55,38 @@ export default function Home() {
 
   return (
     <main>
+      {/* HEADER */}
+      <header className="site-header">
+        <div className="header-inner">
+          <a href="#top" className="logo">
+            <span className="logo-mark mono">BGMI</span>
+            <span className="logo-text">KILL CASH</span>
+          </a>
+          <button className="header-join" onClick={() => setShowJoin(true)}>
+            <span className="wa-icon">✆</span> JOIN
+          </button>
+        </div>
+      </header>
+
+      {/* JOIN POPUP */}
+      {showJoin && (
+        <div className="modal-overlay" onClick={() => setShowJoin(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setShowJoin(false)}>×</button>
+            <div className="modal-title">Stay in the loop</div>
+            <div className="modal-sub mono">Get room IDs, results &amp; daily updates.</div>
+            <a href={CHANNEL_LINK} target="_blank" rel="noopener noreferrer" className="modal-btn modal-wa">
+              <span className="wa-icon">✆</span> Join WhatsApp Channel
+            </a>
+            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="modal-btn modal-ig">
+              <span className="ig-icon">◎</span> Follow on Instagram
+            </a>
+          </div>
+        </div>
+      )}
+
       {/* HERO */}
-      <section className="hero">
+      <section className="hero" id="top">
         <div className="hero-grid" />
         <div className="hero-glow" />
         <div className="hero-scan" />
@@ -71,12 +104,9 @@ export default function Home() {
           </p>
           <div className="hero-ctas">
             <a href="#join" className="cta">CHOOSE YOUR MATCH →</a>
-            <a href={GROUP_LINK} target="_blank" rel="noopener noreferrer" className="cta cta-wa">
-              <span className="wa-icon">✆</span> JOIN WHATSAPP GROUP
-            </a>
           </div>
-          <button className="share-link mono" onClick={shareOnWhatsApp}>
-            ↗ Refer a friend — share on WhatsApp
+          <button className="refer-btn" onClick={shareOnWhatsApp}>
+            <span className="wa-icon">✆</span> REFER A FRIEND — SHARE ON WHATSAPP
           </button>
           <div className="hero-badges mono">
             <span className="badge">₹5,000 TOP PRIZE</span>
@@ -366,17 +396,59 @@ const styles = `
 .cta-full { width: 100%; margin-top: 22px; }
 .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
 .hero-ctas .cta { margin-top: 0; }
-.cta-wa {
-  background: #1faa54; color: #fff; display: inline-flex; align-items: center; gap: 9px;
+
+.refer-btn {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 18px;
+  background: rgba(31,170,84,0.12); border: 1px solid #1faa54; color: #4ade80;
+  font-family: var(--font-geist-mono); font-size: 13px; font-weight: 700; letter-spacing: 1px;
+  padding: 13px 26px; border-radius: 3px; cursor: pointer; transition: background .15s, transform .12s, box-shadow .15s;
 }
-.cta-wa:hover { box-shadow: 0 8px 34px rgba(31,170,84,0.4); }
-.wa-icon { font-size: 17px; }
-.share-link {
-  display: inline-block; margin-top: 18px; background: none; border: none; cursor: pointer;
-  color: var(--muted); font-size: 13px; letter-spacing: 0.5px; text-decoration: underline;
-  text-underline-offset: 3px; transition: color .15s;
+.refer-btn:hover { background: rgba(31,170,84,0.22); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(31,170,84,0.25); }
+
+/* HEADER */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(13,15,10,0.82); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
 }
-.share-link:hover { color: var(--amber); }
+.header-inner { max-width: 980px; margin: 0 auto; padding: 13px 20px; display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.logo-mark { color: #1a1400; background: var(--amber); font-weight: 800; font-size: 15px; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.5px; }
+.logo-text { color: var(--text); font-weight: 800; letter-spacing: 1px; font-size: 15px; }
+.header-join {
+  display: inline-flex; align-items: center; gap: 7px; background: #1faa54; color: #fff;
+  border: none; font-weight: 700; letter-spacing: 1px; font-size: 13px; padding: 9px 18px;
+  border-radius: 3px; cursor: pointer; transition: transform .12s, box-shadow .12s;
+}
+.header-join:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(31,170,84,0.4); }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.72);
+  display: grid; place-items: center; padding: 20px; animation: fadeIn .18s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal {
+  position: relative; width: 100%; max-width: 380px; background: var(--panel);
+  border: 1px solid var(--amber); border-radius: 8px; padding: 32px 26px 28px; text-align: center;
+  animation: popIn .2s ease;
+}
+@keyframes popIn { from { transform: scale(0.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--muted); font-size: 26px; line-height: 1; cursor: pointer; transition: color .15s; }
+.modal-close:hover { color: var(--text); }
+.modal-title { font-size: 21px; font-weight: 800; color: var(--amber-2); margin-bottom: 6px; }
+.modal-sub { font-size: 12px; color: var(--muted); letter-spacing: 0.5px; margin-bottom: 24px; }
+.modal-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+  padding: 14px; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 14px;
+  letter-spacing: 0.5px; margin-top: 12px; transition: transform .12s, box-shadow .12s;
+}
+.modal-btn:hover { transform: translateY(-2px); }
+.modal-wa { background: #1faa54; color: #fff; }
+.modal-wa:hover { box-shadow: 0 8px 24px rgba(31,170,84,0.4); }
+.modal-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+.modal-ig:hover { box-shadow: 0 8px 24px rgba(220,39,67,0.4); }
+.ig-icon, .wa-icon { font-size: 17px; }
 .hero-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 34px; }
 .badge { font-size: 11px; letter-spacing: 1px; color: var(--muted); border: 1px solid var(--line); background: var(--panel); padding: 7px 13px; border-radius: 20px; }
 
