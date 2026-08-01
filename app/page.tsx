@@ -6,8 +6,8 @@ import { useState } from "react";
 const WHATSAPP = "918428337833";   // your WhatsApp number (91 + number, no +)
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbwBySRAPjNy4Ur4HCe1mZfpYDuLnXIuxGzA5vtLp2Sg6cGG_ijI3S6uguWiutj4Y_eW/exec";  // Google Apps Script Web App URL
 const GROUP_LINK = "https://chat.whatsapp.com/YOUR_GROUP_INVITE_CODE";  // paste your WhatsApp group invite link
-const CHANNEL_LINK = "https://whatsapp.com/channel/YOUR_CHANNEL_CODE";  // paste your WhatsApp CHANNEL link
-const INSTAGRAM_LINK = "https://instagram.com/YOUR_PAGE";               // paste your Instagram page link
+const CHANNEL_LINK = "https://whatsapp.com/channel/0029Vb8DhoRJJhzgM1qZNi0h";  // WhatsApp CHANNEL link
+const INSTAGRAM_LINK = "https://www.instagram.com/bgmikillcash";        // Instagram page link
 const SITE_URL = "https://bgmi-kill-cash.vercel.app";                   // your live site link (for referrals)
 // UPI QR image lives at /public/upi-qr.png — replace that file with your real QR.
 // ──────────────────────────────────────────────────────────────
@@ -47,10 +47,10 @@ export default function Home() {
 
   const shareOnWhatsApp = () => {
     const text =
-      `🎮 *BGMI KILL CASH* — Daily solo tournament at 8 PM!%0A` +
-      `Win up to ₹5,000 cash. Entry just ₹100.%0A` +
+      `🎮 *BGMI KILL CASH* — Daily solo tournament at 8 PM!\n` +
+      `Win up to ₹5,000 cash. Entry just ₹100.\n` +
       `Register here 👉 ${SITE_URL}`;
-    window.open(`https://wa.me/?text=${text}`, "_blank");
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   return (
@@ -279,16 +279,16 @@ function RegForm({ format }: { format: typeof FORMATS[FormatKey] }) {
 
     // 2) Also open WhatsApp with text details (screenshot can't auto-attach)
     const msg =
-      `*BGMI KILL CASH — Registration*%0A` +
-      `Match: ${format.name}%0A` +
-      `Name: ${form.name}%0A` +
-      `BGMI ID: ${form.bgmiId}%0A` +
-      `IGN: ${form.ign}%0A` +
-      `Phone: ${form.phone}%0A` +
-      `Email: ${form.email}%0A` +
-      `City: ${form.city}%0A` +
+      `*BGMI KILL CASH — Registration*\n` +
+      `Match: ${format.name}\n` +
+      `Name: ${form.name}\n` +
+      `BGMI ID: ${form.bgmiId}\n` +
+      `IGN: ${form.ign}\n` +
+      `Phone: ${form.phone}\n` +
+      `Email: ${form.email}\n` +
+      `City: ${form.city}\n` +
       `Txn ID: ${form.txnId}`;
-    window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, "_blank");
+    window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(msg)}`, "_blank");
 
     setSending(false);
     setSubmitted(true);
@@ -304,6 +304,10 @@ function RegForm({ format }: { format: typeof FORMATS[FormatKey] }) {
           attach your payment screenshot there too. We&apos;ll verify and share
           the room ID on <strong>{form.phone}</strong> before 8 PM.
         </p>
+        <div className="success-cta mono">⚠️ IMPORTANT — Join our channel to get the Room ID</div>
+        <a href={CHANNEL_LINK} target="_blank" rel="noopener noreferrer" className="join-btn join-wa success-join">
+          <span className="wa-icon">✆</span> Join WhatsApp Channel
+        </a>
       </div>
     );
   }
@@ -542,6 +546,8 @@ const styles = `
 
 .success { text-align: center; padding: 44px 14px; margin-top: 28px; border: 1px solid var(--amber); background: var(--panel); border-radius: 5px; }
 .success-icon { width: 64px; height: 64px; border: 2px solid var(--amber); color: var(--amber); border-radius: 50%; display: grid; place-items: center; margin: 0 auto 22px; font-size: 30px; }
+.success-cta { margin-top: 26px; margin-bottom: 14px; font-size: 12px; letter-spacing: 0.5px; color: var(--amber-2); font-weight: 700; }
+.success-join { display: inline-flex; margin: 0 auto; }
 .success h3 { font-size: 22px; margin: 0 0 12px; }
 .success p { color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 440px; margin: 0 auto; }
 .success strong { color: var(--amber-2); }
